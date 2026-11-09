@@ -1,6 +1,6 @@
 """Run ExtractBench through Page Extract's public API, and score each document with ExtractBench's own scorer.
 
-    export PAGEINDEX_EXTRACT_API_KEY=pis_live_...     # or PAGEINDEX_SEARCH_API_KEY: one key serves both
+    export PAGEINDEX_EXTRACT_API_KEY=pie_live_...     # or PAGEINDEX_SEARCH_API_KEY: one key serves both
     python run.py --bench ../ExtractBench --tier standard [--at-once 6] [--only stem,stem]
 
 --bench is a checkout of https://github.com/run-llama/ExtractBench with its data downloaded

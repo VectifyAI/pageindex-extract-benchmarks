@@ -52,7 +52,7 @@ git clone https://github.com/run-llama/ExtractBench ../ExtractBench
 (cd ../ExtractBench && uv sync && uv run extract-bench download)
 
 pip install -r requirements.txt
-export PAGEINDEX_EXTRACT_API_KEY=pis_live_...
+export PAGEINDEX_EXTRACT_API_KEY=pie_live_...
 python run.py --bench ../ExtractBench --tier standard     # or --tier pro
 python results.py                                         # tables and charts
 ```
