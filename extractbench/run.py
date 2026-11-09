@@ -1,6 +1,6 @@
 """Run ExtractBench through Page Extract's public API, and score each document with ExtractBench's own scorer.
 
-    export PAGEINDEX_SEARCH_API_KEY=pis_live_...      # one key serves Page Search and Page Extract
+    export PAGEINDEX_EXTRACT_API_KEY=pis_live_...     # or PAGEINDEX_SEARCH_API_KEY: one key serves both
     python run.py --bench ../ExtractBench --tier standard [--at-once 6] [--only stem,stem]
 
 --bench is a checkout of https://github.com/run-llama/ExtractBench with its data downloaded
@@ -115,7 +115,9 @@ def main():
     p.add_argument("--only", help="comma-separated stems, to run only these")
     args = p.parse_args()
     args.bench = args.bench.resolve()
-    key = os.environ["PAGEINDEX_SEARCH_API_KEY"]
+    key = os.environ.get("PAGEINDEX_EXTRACT_API_KEY") or os.environ.get("PAGEINDEX_SEARCH_API_KEY")
+    if not key:
+        raise SystemExit("Set PAGEINDEX_EXTRACT_API_KEY to your API key (https://search.pageindex.ai/console/keys).")
 
     cases = [(split, c) for split in SPLITS for c in sorted((args.bench / "data" / split).glob("*.test.json"))]
     if args.only:
